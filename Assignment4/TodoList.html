@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f8f9fa;
+    }
+    .card {
+      width: 400px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card shadow">
+  <div class="card-body">
+
+    <h3 class="text-center mb-3">Todo App</h3>
+
+    <div class="input-group mb-3">
+      <input type="text" id="todoinput" class="form-control" placeholder="Enter a todo">
+      <button class="btn btn-primary" onclick="Addtodo()">ADD</button>
+    </div>
+
+    <ul class="list-group" id="todolist"></ul>
+
+  </div>
+</div>
+
+<script>
+function Addtodo() {
+  const input = document.getElementById("todoinput");
+  const todoText = input.value.trim();
+
+  if (todoText === "") {
+    alert("Please enter a todo");
+    return;
+  }
+
+  const li = document.createElement("li");
+  li.className = "list-group-item d-flex justify-content-between align-items-center";
+  li.textContent = todoText;
+
+  const deletebtn = document.createElement("button");
+  deletebtn.className = "btn btn-danger btn-sm";
+  deletebtn.textContent = "Delete";
+
+  deletebtn.onclick = function () {
+    li.remove();
+  };
+
+  li.appendChild(deletebtn);
+  document.getElementById("todolist").appendChild(li);
+  input.value = "";
+}
+</script>
+
+</body>
+</html>
